@@ -3,12 +3,14 @@ package jhonny.berdeja;
 public class PaquetePorHabitaciones implements Paquete {
 	private int cantidadDeHabitaciones;
 	private Double precioDeHabitacion;
+	private Double porsentageDeImpuesto;
 	
 	
 	//**********************      CONSTRUCTORES        ************************************
-	public PaquetePorHabitaciones(int cantidadDeHabitaciones, Double precioDeHabitacioin){
+	public PaquetePorHabitaciones(int cantidadDeHabitaciones, Double precioDeHabitacioin, Double porsentageDeImpuesto){
 		this.cantidadDeHabitaciones=cantidadDeHabitaciones;
 		this.precioDeHabitacion=precioDeHabitacioin;
+		this.porsentageDeImpuesto=porsentageDeImpuesto;
 	}
 	//*************************************************************************************
 	
@@ -34,11 +36,12 @@ public class PaquetePorHabitaciones implements Paquete {
 
 	@Override
 	public Double precio() {
-		return CalculadorDePrecio.precio(this);
+		return new CalculadorDePrecio(this.porsentageDeImpuesto).precio(this);
 	}
 
 	@Override
 	public Object getIntanciaDePaquete() {
 		return this;
 	}
+	
 }

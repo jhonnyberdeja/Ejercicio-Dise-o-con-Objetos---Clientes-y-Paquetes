@@ -2,10 +2,12 @@ package jhonny.berdeja;
 
 public class PaqueteSegunElSaldoDelCliente implements Paquete{
 	private Cliente cliente;
+	private Double porsentageDeImpuesto;
 	
 	//**********************      CONSTRUCTORES        ************************************
-	public PaqueteSegunElSaldoDelCliente(Cliente cliente){
+	public PaqueteSegunElSaldoDelCliente(Cliente cliente, Double porsentageDeImpuesto){
 		this.cliente=cliente;
+		this.porsentageDeImpuesto=porsentageDeImpuesto;
 	}
 	//*************************************************************************************
 	
@@ -26,12 +28,13 @@ public class PaqueteSegunElSaldoDelCliente implements Paquete{
 
 	@Override
 	public Double precio() {
-		return CalculadorDePrecio.precio(this);
+		return new CalculadorDePrecio(this.porsentageDeImpuesto).precio(this);
 	}
 
 	@Override
 	public Object getIntanciaDePaquete() {
 		return this;
 	}
+	
 	
 }
