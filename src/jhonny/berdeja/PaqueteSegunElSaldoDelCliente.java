@@ -23,5 +23,15 @@ public class PaqueteSegunElSaldoDelCliente implements Paquete{
 	public Double precioBase(){
 		return this.cliente.getSaldo() * 10 / 100;
 	}
+
+	@Override
+	public Double precio() {
+		return CalculadorDePrecio.precio(this);
+	}
+
+	@Override
+	public Object getIntanciaDePaquete() {
+		return this;
+	}
 	
 }

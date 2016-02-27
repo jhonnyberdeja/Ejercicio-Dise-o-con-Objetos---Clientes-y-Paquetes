@@ -1,36 +1,27 @@
 package jhonny.berdeja;
 
 public class CalculadorDePrecio {
-	private Double porsentajeDeImpuesto;
-	private Paquete paquete;
+	private static Double porsentajeDeImpuesto=10.0;
 	
-	
+	//**********************      CONSTRUCTORES        ************************************
 	public CalculadorDePrecio(){
 		
 	}
-	public CalculadorDePrecio(Paquete paquete, Double porsentajeDeImpuesto){
-		this.paquete=paquete;
-		this.porsentajeDeImpuesto=porsentajeDeImpuesto;
+	public CalculadorDePrecio(Double porsentajeDeImpuesto){
+		CalculadorDePrecio.porsentajeDeImpuesto=porsentajeDeImpuesto;
+	}
+	//*************************************************************************************
+	
+	//**********************      GETERS Y SETERS       ***********************************
+
+	public static  void setPorsentajeImpuesto(Double porsentajeDeImpuesto) {
+		CalculadorDePrecio.porsentajeDeImpuesto = porsentajeDeImpuesto;
 	}
 	
-	public Double getPorsentajeImpuesto() {
-		return porsentajeDeImpuesto;
-	}
-
-	public void setPorsentajeImpuesto(Double porsentajeDeImpuesto) {
-		this.porsentajeDeImpuesto = porsentajeDeImpuesto;
-	}
-
-	public Paquete getPaquete() {
-		return paquete;
-	}
-
-	public void setPaquete(Paquete paquete) {
-		this.paquete = paquete;
-	}
-	
-	public Double precio(Paquete paquete){
-		Double impuesto= paquete.precioBase() * this.porsentajeDeImpuesto/100;
+	//*************************************************************************************
+	//Calcula el precio del paquete
+	public static Double precio(Paquete paquete){
+		Double impuesto= paquete.precioBase() * CalculadorDePrecio.porsentajeDeImpuesto/100;
 		return paquete.precioBase()+impuesto;
 	}
 }

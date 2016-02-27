@@ -31,4 +31,14 @@ public class PaquetePorHabitaciones implements Paquete {
 	public Double precioBase(){
 		return this.cantidadDeHabitaciones * this.precioDeHabitacion;
 	}
+
+	@Override
+	public Double precio() {
+		return CalculadorDePrecio.precio(this);
+	}
+
+	@Override
+	public Object getIntanciaDePaquete() {
+		return this;
+	}
 }

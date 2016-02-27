@@ -23,4 +23,14 @@ public class PaqueteComun implements Paquete {
 		return this.precioBase;
 	}
 
+	@Override
+	public Double precio() {
+		return CalculadorDePrecio.precio(this);
+	}
+
+	@Override
+	public Object getIntanciaDePaquete() {
+		return this;
+	}
+
 }
