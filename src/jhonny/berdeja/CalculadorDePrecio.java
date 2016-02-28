@@ -1,28 +1,37 @@
 package jhonny.berdeja;
 
+import java.util.ArrayList;
+
 public class CalculadorDePrecio {
-	private Double porsentajeDeImpuesto=10.0;
+	private static int subIndice=-1;
+	private static ArrayList<Double> porsentajesDeImpuestos=new ArrayList<Double>();
+	
 	
 	//**********************      CONSTRUCTORES        ************************************
-	public CalculadorDePrecio(Double porsentajeDeImpuesto){
-		this.porsentajeDeImpuesto=porsentajeDeImpuesto;
-	}
+
 	//*************************************************************************************
 	
 	//**********************      GETERS Y SETERS       ***********************************
 
-	public  void setPorsentajeImpuesto(Double porsentajeDeImpuesto) {
-		this.porsentajeDeImpuesto = porsentajeDeImpuesto;
+	public static  void setPorsentajeImpuesto(Double porsentajeDeImpuesto) {
+		porsentajesDeImpuestos.add(porsentajeDeImpuesto);
+		subIndice++;
 	}
 	
-	public Double getPorsentajeDeImpuesto(){
-		return this.porsentajeDeImpuesto;
+	public static Double getPorsentajeDeImpuesto(){
+		return CalculadorDePrecio.porsentajesDeImpuestos.get(subIndice);
 	}
 	
 	//*************************************************************************************
 	//Calcula el precio del paquete
-	public Double precio(Paquete paquete){
-		Double impuesto= paquete.precioBase() * this.porsentajeDeImpuesto/100;
+	public static Double precio(Paquete paquete){
+		Double impuesto;
+		if(paquete.getSubIndice()==-1){
+			impuesto= paquete.precioBase() * porsentajesDeImpuestos.get(subIndice)/100;
+			paquete.setSubIndice(subIndice);
+		}else{
+			impuesto= paquete.precioBase() * porsentajesDeImpuestos.get(paquete.getSubIndice())/100;
+		}
 		return paquete.precioBase()+impuesto;
 	}
 }

@@ -7,11 +7,11 @@ public class Provador {
 		
 		//**********************      PUNTO 1       **************************
 		//PRUEBA 1
-		Double porsentajeDeImpuestoParaPaqueteComun=25.0;
+		CalculadorDePrecio.setPorsentajeImpuesto(25.0);
 		
 		Cliente juan=new Cliente(2000.0);
 		
-		PaqueteComun paqueteComun=new PaqueteComun(500.0, porsentajeDeImpuestoParaPaqueteComun);
+		PaqueteComun paqueteComun=new PaqueteComun(500.0);
 		
 		System.out.println("Precio de PaqueComun : "+paqueteComun.precio());
 		
@@ -19,9 +19,9 @@ public class Provador {
 		
 		System.out.println("Saldo de Juan despues de comprar el PaqueteComun: "+juan.getSaldo());
 		
-		Double porsentajeDeImpuestoParaPaqueteMardel=20.0;
+		CalculadorDePrecio.setPorsentajeImpuesto(20.0);
 		
-		PaquetePorHabitaciones paqueteMardel=new PaquetePorHabitaciones(2, 50.0, porsentajeDeImpuestoParaPaqueteMardel);
+		PaquetePorHabitaciones paqueteMardel=new PaquetePorHabitaciones(2, 50.0);
 		
 		System.out.println("Precio de PAqueteMardel : "+paqueteMardel.precio());
 		
@@ -32,6 +32,7 @@ public class Provador {
 		System.out.println("Juan gasto  "+juan.getCuantoGasto()+"  y compro  "+juan.getCantidadDePaquetesComprados()+"  paquetes");
 		
 		System.out.println("Precio de paquete mas caro que compro Juan: "+juan.getPaqueteMasCaro().precio());
+		
 
 	}
 

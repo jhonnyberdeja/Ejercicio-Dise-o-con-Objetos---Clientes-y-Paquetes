@@ -2,12 +2,12 @@ package jhonny.berdeja;
 
 public class PaqueteComun implements Paquete {
 	private Double precioBase;
-	private Double porsentageDeImpuesto;
+	private int subIndice;
 	
 	//**********************      CONSTRUCTORES        ************************************
-	public PaqueteComun(Double precioBase,Double porsentageDeImpuesto){
+	public PaqueteComun(Double precioBase){
 		this.precioBase=precioBase;
-		this.setPorsentageDeImpuesto(porsentageDeImpuesto);
+		this.subIndice=-1;
 	}
 	
 	//**********************      GETERS Y SETERS       ************************************
@@ -17,12 +17,21 @@ public class PaqueteComun implements Paquete {
 	public void setPrecioBase(Double presioBase){
 		this.precioBase=presioBase;
 	}
-	public Double getPorsentageDeImpuesto() {
-		return porsentageDeImpuesto;
+	
+	@Override
+	public void setSubIndice(int subIndice) {
+		this.subIndice=subIndice;
+		
 	}
+	@Override
+	public int getSubIndice() {
+		return this.subIndice;
+	}
+	
 
-	public void setPorsentageDeImpuesto(Double porsentageDeImpuesto) {
-		this.porsentageDeImpuesto = porsentageDeImpuesto;
+	@Override
+	public Object getIntanciaDePaquete() {
+		return this;
 	}
 
 	//***************************************************************************************
@@ -34,12 +43,12 @@ public class PaqueteComun implements Paquete {
 
 	@Override
 	public Double precio() {
-		return new CalculadorDePrecio(this.porsentageDeImpuesto).precio(this);
+		return CalculadorDePrecio.precio(this);
 	}
 
-	@Override
-	public Object getIntanciaDePaquete() {
-		return this;
-	}
+
+
+
+
 
 }
