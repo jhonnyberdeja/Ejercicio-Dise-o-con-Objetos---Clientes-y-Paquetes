@@ -4,12 +4,14 @@ public class PaquetePorHabitaciones implements Paquete {
 	private int cantidadDeHabitaciones;
 	private Double precioDeHabitacion;
 	private int subIndice;
+	private boolean reservado;
 	
 	
 	//**********************      CONSTRUCTORES        ************************************
 	public PaquetePorHabitaciones(int cantidadDeHabitaciones, Double precioDeHabitacioin){
 		this.cantidadDeHabitaciones=cantidadDeHabitaciones;
 		this.precioDeHabitacion=precioDeHabitacioin;
+		this.setReservado(false);
 	}
 	//*************************************************************************************
 	
@@ -42,6 +44,15 @@ public class PaquetePorHabitaciones implements Paquete {
 	public Object getIntanciaDePaquete() {
 		return this;
 	}
+	
+
+	public boolean isReservado() {
+		return reservado;
+	}
+
+	public void setReservado(boolean reservado) {
+		this.reservado = reservado;
+	}
 	//*************************************************************************************
 	
 	// Calculador de precio base del paquete
@@ -53,8 +64,5 @@ public class PaquetePorHabitaciones implements Paquete {
 	public Double precio() {
 		return CalculadorDePrecio.precio(this);
 	}
-
-
-
 	
 }

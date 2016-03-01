@@ -3,10 +3,12 @@ package jhonny.berdeja;
 public class PaqueteSegunElSaldoDelCliente implements Paquete{
 	private Cliente cliente;
 	private int subIndice;
+	private boolean reservado;
 	
 	//**********************      CONSTRUCTORES        ************************************
 	public PaqueteSegunElSaldoDelCliente(Cliente cliente){
 		this.cliente=cliente;
+		this.setReservado(false);
 	}
 	//*************************************************************************************
 	
@@ -32,6 +34,14 @@ public class PaqueteSegunElSaldoDelCliente implements Paquete{
 	public Object getIntanciaDePaquete() {
 		return this;
 	}
+	
+	public boolean isReservado() {
+		return reservado;
+	}
+
+	public void setReservado(boolean reservado) {
+		this.reservado = reservado;
+	}
 	//**************************************************************************************
 	// Calculador de precio base del paquete
 	public Double precioBase(){
@@ -43,8 +53,6 @@ public class PaqueteSegunElSaldoDelCliente implements Paquete{
 		return CalculadorDePrecio.precio(this);
 	}
 
-	
 
-	
 	
 }

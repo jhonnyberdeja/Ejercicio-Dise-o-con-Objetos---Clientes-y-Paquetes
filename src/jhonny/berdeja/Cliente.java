@@ -6,6 +6,7 @@ public class Cliente {
 	private int cantidadDePaquetesComprados;
 	private Double precioMasCaro;
 	private Paquete paqueteMasCaro;
+	private Double precioActual;
 	
 	//**********************      CONSTRUCTORES        ************************************
 	public Cliente(Double saldo){
@@ -34,16 +35,34 @@ public class Cliente {
 	public int getCantidadDePaquetesComprados() {
 		return this.cantidadDePaquetesComprados;
 	}
+	
+	public void setCantidadDePaquetesComprados(int cantidadDePaquetesComprados) {
+		this.cantidadDePaquetesComprados=cantidadDePaquetesComprados;
+	}
 	//EERCICIO 2, PUNTO 2
 	public Paquete getPaqueteMasCaro() {
 		return this.paqueteMasCaro;
 	}
+	
+	public Double getPrecioMasCaro(){
+		return this.precioMasCaro;
+	}
+	public void setPrecioMasCaro(Double precioMasCaro){
+		this.precioMasCaro=precioMasCaro;
+	}
+	public Double getPrecioActual(){
+		return this.precioActual;
+	}
+	public void setPrecioActual(Double precioActual){
+		this.precioActual=precioActual;
+	}
+	
 	//*************************************************************************************
 	
 	// EJERCICIO 1, PUNTO 2: Hacer que el cliente compre un paquete
 	public void comprarPaquete(Paquete paquete){
-		Double precioActual=paquete.precio();
-		if(precioActual>this.precioMasCaro){
+		this.precioActual=paquete.precio();
+		if(this.precioActual>this.precioMasCaro){
 			this.precioMasCaro=precioActual;
 			this.paqueteMasCaro=(Paquete) paquete.getIntanciaDePaquete();
 		}

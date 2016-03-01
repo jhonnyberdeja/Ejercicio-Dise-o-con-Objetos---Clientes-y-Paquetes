@@ -3,11 +3,13 @@ package jhonny.berdeja;
 public class PaqueteComun implements Paquete {
 	private Double precioBase;
 	private int subIndice;
+	private boolean reservado;
 	
 	//**********************      CONSTRUCTORES        ************************************
 	public PaqueteComun(Double precioBase){
 		this.precioBase=precioBase;
 		this.subIndice=-1;
+		this.setReservado(false);
 	}
 	
 	//**********************      GETERS Y SETERS       ************************************
@@ -33,6 +35,14 @@ public class PaqueteComun implements Paquete {
 	public Object getIntanciaDePaquete() {
 		return this;
 	}
+	
+	public boolean isReservado() {
+		return reservado;
+	}
+
+	public void setReservado(boolean reservado) {
+		this.reservado = reservado;
+	}
 
 	//***************************************************************************************
 	
@@ -45,6 +55,8 @@ public class PaqueteComun implements Paquete {
 	public Double precio() {
 		return CalculadorDePrecio.precio(this);
 	}
+
+
 
 
 

@@ -6,4 +6,6 @@ public interface Paquete {
 	public Object getIntanciaDePaquete();
 	public void setSubIndice(int subIndice);
 	public int getSubIndice();
+	public boolean isReservado();
+	public void setReservado(boolean reservado);
 }
