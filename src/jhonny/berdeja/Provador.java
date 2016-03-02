@@ -125,30 +125,33 @@ public class Provador {
 		*/
 		//PRUEVA 2
 		Individuo milton=new Individuo(100.0);
-		
+		LOGGER.info("individu Milton, creado");
 		ArrayList<Paquete> listaDePaquetes=new ArrayList<Paquete>();
-		
+		LOGGER.info("Lista de paquetes, creado");
 		PaqueteComun paqComun=new PaqueteComun(500.0);
-		
+		LOGGER.info("Paquete comun, creado");
 		PaquetePorHabitaciones paqMardel=new PaquetePorHabitaciones(2, 50.0);
-		
+		LOGGER.info("Paquete mardel, creado");
 		PaqueteSegunElSaldoDelCliente  paqSegunElSaldoDelCliente=new PaqueteSegunElSaldoDelCliente(milton);
-		
+		LOGGER.info("Paquete segun saldo del cliente, creado");
 		listaDePaquetes.add(paqComun);
 		listaDePaquetes.add(paqMardel);
 		listaDePaquetes.add(paqSegunElSaldoDelCliente);
-		
+		LOGGER.info("PaqueteComun, PaqueteSegunSaldoDelCliente y PaqueteMardel, agregados a la lista de paquetes");
 		PaqueteDePaquetes paqueteDePaquetes=new PaqueteDePaquetes(listaDePaquetes);
-		
-		
+		LOGGER.info("Lista agregada al paquete de paquetes");
 		try {
 			milton.comprarPaquete(paqueteDePaquetes);
+			LOGGER.info("milton intento comprar un paquete de paquetes");
 		} catch (CompraNoPermitidaException e) {
+			LOGGER.info("Milton no pudo comprar el paquete de paquetes porque es un individuo y a un individuo no se le permite comprar varios paquetes a la ves");
 			//e.getStackTrace();
 			throw new CompraNoPermitidaException("Un individuo no puede comprar mas de un paquete a la ves");
 		}finally{
 			System.out.println("Saldo de Juan es : "+milton.getSaldo());
         }
+		
+		//¿ ESTOS LOGGER SIEMPRE TENEMOS QUE PONERLE A TODAS LAS CLASES DEL PROYECTO O SOLO EN DONDE CREEMOS QUE ES NESESARIO PONERLO?
 		
 		
 		
