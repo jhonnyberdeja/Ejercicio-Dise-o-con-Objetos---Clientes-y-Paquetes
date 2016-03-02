@@ -60,7 +60,13 @@ public class Cliente {
 	//*************************************************************************************
 	
 	// EJERCICIO 1, PUNTO 2: Hacer que el cliente compre un paquete
-	public void comprarPaquete(Paquete paquete){
+	public void comprarPaquete(Paquete paquete) throws SaldoInsuficienteException {
+		if(paquete.getIntanciaDePaquete() instanceof PaqueteDePaquetes){
+			throw new CompraNoPermitidaException("Operacion no permitida, un individuo no puede comprar mas de un paquete a la ves");
+		}
+		if( ( this.getSaldo() - paquete.precio() ) < 0 ){
+			throw new SaldoInsuficienteException("El saldo no es suficiente para realizar esta compra");
+		}
 		this.precioActual=paquete.precio();
 		if(this.precioActual>this.precioMasCaro){
 			this.precioMasCaro=precioActual;

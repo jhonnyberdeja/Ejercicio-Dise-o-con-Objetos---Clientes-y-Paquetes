@@ -2,9 +2,19 @@ package jhonny.berdeja;
 
 import java.util.ArrayList;
 
-public class Provador {
+import javax.print.attribute.TextSyntax;
 
-	public static void main(String[] args) {
+import org.slf4j.Logger;// ojo , este es el .....
+import org.slf4j.LoggerFactory;
+
+
+
+public class Provador {
+	
+	private final static Logger LOGGER =LoggerFactory.getLogger(Provador.class);
+	
+	public static void main(String[] args) throws SaldoInsuficienteException   { //throws SaldoInsuficienteException {
+		LOGGER.info("hola mundo");
 		/*
 		//*************         EJERCICIO 2         *********************
 		
@@ -37,7 +47,7 @@ public class Provador {
 		//***********************    PUNTO 2     *************************
 		//PRUEVA
 		System.out.println("Precio de paquete mas caro que compro Juan: "+juan.getPaqueteMasCaro().precio());
-		*/
+		
 		//**********************     PUNTO 3     *************************
 		//PRUEVA 1
 		CalculadorDePrecio.setPorsentajeImpuesto(10.0);
@@ -78,6 +88,7 @@ public class Provador {
 		
 		System.out.println("El saldo del individuo despues de reservar el paquete PC es: "+individuo.getSaldo());
 		
+		//PUEVA 3
 		individuo.terminarCompraDePaqueteReservado(pc);
 		
 		if(pc.isReservado()==true)
@@ -89,7 +100,55 @@ public class Provador {
 		
 		System.out.println("Cantidad de paquetes comprados por el individuo : "+individuo.getCantidadDePaquetesComprados());
 		
-		//PUEVA 3
+		*/
+		//*************************     EJERCICIO 3       *****************************+
+		/*
+		//PRUEVA 1
+		CalculadorDePrecio.setPorsentajeImpuesto(25.0);
+		
+		Individuo juan=new Individuo(2000.0);
+		
+		PaqueteComun paqueteComun=new PaqueteComun(10000.0);
+		
+		System.out.println("Precio de PaqueComun : "+paqueteComun.precio());
+		
+		try {
+			juan.comprarPaquete(paqueteComun);
+		} catch (SaldoInsuficienteException e) {
+			//e.getStackTrace();
+			throw new SaldoInsuficienteException("Saldo insuficiente para realizar la operacion");
+		}finally{
+			System.out.println("Saldo de Juan es : "+juan.getSaldo());
+        }
+		
+		System.out.println("Saldo de Juan despues de comprar el PaqueteComun: "+juan.getSaldo());
+		*/
+		//PRUEVA 2
+		Individuo milton=new Individuo(100.0);
+		
+		ArrayList<Paquete> listaDePaquetes=new ArrayList<Paquete>();
+		
+		PaqueteComun paqComun=new PaqueteComun(500.0);
+		
+		PaquetePorHabitaciones paqMardel=new PaquetePorHabitaciones(2, 50.0);
+		
+		PaqueteSegunElSaldoDelCliente  paqSegunElSaldoDelCliente=new PaqueteSegunElSaldoDelCliente(milton);
+		
+		listaDePaquetes.add(paqComun);
+		listaDePaquetes.add(paqMardel);
+		listaDePaquetes.add(paqSegunElSaldoDelCliente);
+		
+		PaqueteDePaquetes paqueteDePaquetes=new PaqueteDePaquetes(listaDePaquetes);
+		
+		
+		try {
+			milton.comprarPaquete(paqueteDePaquetes);
+		} catch (CompraNoPermitidaException e) {
+			//e.getStackTrace();
+			throw new CompraNoPermitidaException("Un individuo no puede comprar mas de un paquete a la ves");
+		}finally{
+			System.out.println("Saldo de Juan es : "+milton.getSaldo());
+        }
 		
 		
 		
